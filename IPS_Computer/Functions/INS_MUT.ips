@@ -14,7 +14,7 @@ CLR #0
 
 DEC MUT_counter
 ADT #0 MUT_help_1
-JNQ MUT_counter MUT_help_2 15
+JNE MUT_counter MUT_help_2 15
 JMP 22
 
 CLR #0

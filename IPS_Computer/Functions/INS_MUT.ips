@@ -1,0 +1,24 @@
+% MUT x y
+% multiply x by y
+
+CLR MUT_counter
+CLR MUT_help_1
+CLR MUT_help_2
+
+JEQ #0 MUT_counter 20
+JEQ #1 MUT_counter 20
+
+MOV MUT_counter #0
+MOV MUT_help_1 #1
+CLR #0
+
+DEC MUT_counter
+ADT #0 MUT_help_1
+JNQ MUT_counter MUT_help_2 15
+JMP 22
+
+CLR #0
+
+DEL MUT_counter
+DEL MUT_help_1
+DEL MUT_help_2

@@ -188,6 +188,5 @@ if __name__ == "__main__":
         print("\nProgram terminated with following values:")
         with open("Output.txt", "w") as op:
             for reg, val in register.items():
-                if val is not None:
-                    print(f"{reg}: {val}", file=op)
-                    print(f"{reg}: {val}")
+                print(f"{reg}: {val}", file=op)
+                print(f"{reg}: {val}")

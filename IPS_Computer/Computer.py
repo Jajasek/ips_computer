@@ -54,6 +54,19 @@ def JEQ(x,y,pt_new):
         pointer = int(pt_new) - 2
 
 
+def JNE(x, y, pt_new):
+    # JNE x y pt_new
+    # if x != y go with pointer to pt_new
+
+    global pointer
+    if x not in register:
+        raise UndefinedRegisterError(x)
+    elif y not in register:
+        raise UndefinedRegisterError(y)
+    elif register[x] != register[y]:
+        pointer = int(pt_new) - 2
+
+
 def JMP(pt_new):
     # JMP pt_new
     # go with pointer to pt_new
@@ -90,6 +103,7 @@ INSTRUCTIONS = {
     "INC",
     "DEC",
     "JEQ",
+    "JNE",
     "JMP",
     "CON",
     "DEL",
@@ -99,12 +113,6 @@ INSTRUCTIONS = {
 
 register = {}
 pointer = -1
-with open("Register.txt", "r") as op:
-    for line in op:
-        line = line.split()
-        if len(line) < 2:
-            continue
-        register[line[0]] = int(line[1])
 
 
 def run_file(filename, *args):
@@ -114,11 +122,11 @@ def run_file(filename, *args):
         with open(filename, "r") as op:
             instr = [
                 [args[int(word[1:])] if word.startswith("#") else word for word in line.split() if not line.startswith("%")]
-            for line in op]
+                for line in op
+            ]
     except IndexError:
         raise UndefinedScriptArgumentError(" ".join((filename,) + args))
 
-        
     pointer = 0
     while True:
         if pointer >= len(instr):
@@ -139,11 +147,29 @@ def run_file(filename, *args):
         pointer += 1
 
 
+def main(filename):
+    try:
+        if filename.endswith(".ips"):
+            reg_file = open(f"{filename[:-4]}.reg", "r")
+        else:
+            raise FileNotFoundError
+    except FileNotFoundError:
+        reg_file = open("Register.txt", "r")
+    try:
+        for line in reg_file:
+            line = line.split()
+            if len(line) < 2:
+                continue
+            register[line[0]] = int(line[1])
+    finally:
+        reg_file.close()
+
+    run_file(filename)
 
 
 if __name__ == "__main__":
     try:
-        run_file("Test/INS.ips")
+        main("Test/Factorial.ips")
     finally:
         print("\nProgram terminated with following values:")
         with open("Output.txt", "w") as op:
@@ -151,4 +177,3 @@ if __name__ == "__main__":
                 if val is not None:
                     print(f"{reg}: {val}", file=op)
                     print(f"{reg}: {val}")
-        

@@ -1,0 +1,8 @@
+% MOV x y
+% copy value of y to x
+
+JEQ #0 #1 9
+CLR #0
+JEQ #0 #1 9
+INC #0
+JMP 6

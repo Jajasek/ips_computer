@@ -1,0 +1,9 @@
+% ADD x y z
+% sum of y and z stored in x 
+
+CLR ADD_help
+MOV ADD_help #1
+ADT ADD_help #2
+CLR #0
+MOV #0 ADD_help
+DEL ADD_help

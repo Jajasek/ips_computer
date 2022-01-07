@@ -1,0 +1,20 @@
+CON x 42
+CON y 37
+
+ADD a x y
+SUB b x y
+
+CON c 9
+CON d 10
+CON e 11
+
+ADT d c
+SUT e c
+
+INC c
+INC c
+DEC c
+
+PRT c
+
+DEL c

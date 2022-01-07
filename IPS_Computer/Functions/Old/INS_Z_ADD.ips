@@ -1,0 +1,10 @@
+% ADD x y z
+% sum of y and z stored to x
+
+MOV #0 #1
+CLR Z_ADD_counter
+JEQ Z_ADD_counter #0 10
+INC #0
+INC Z_ADD_counter
+JMP 6
+DEL Z_ADD_counter

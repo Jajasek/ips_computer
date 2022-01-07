@@ -1,0 +1,9 @@
+% SUB x y z
+% difference of y and z stored in x 
+
+CLR SUB_help
+MOV SUB_help #1
+SUT SUB_help #2
+CLR #0
+MOV #0 SUB_help
+DEL SUB_help

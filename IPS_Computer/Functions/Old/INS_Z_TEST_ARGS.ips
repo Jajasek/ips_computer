@@ -1,0 +1,3 @@
+CON x 37
+CON y 42
+Z_ADD x y out

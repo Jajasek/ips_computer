@@ -1,0 +1,13 @@
+% SUB x y
+% subtract y from x (stored in x)
+
+CLR SUT_counter
+CLR SUT_help
+MOV SUT_counter #1
+JEQ SUT_help SUT_counter 12
+DEC #0
+DEC SUT_counter
+JMP 7
+
+DEL SUT_counter
+DEL SUT_help

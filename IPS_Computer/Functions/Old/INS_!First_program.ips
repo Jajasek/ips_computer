@@ -1,0 +1,10 @@
+CLR c
+
+INC a
+INC c
+INC z
+INC z
+INC z
+INC z
+
+JEQ a b 2

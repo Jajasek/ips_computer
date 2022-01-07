@@ -1,0 +1,13 @@
+% ADT x y
+% add x to y (stored in x)
+
+CLR ADT_counter
+CLR ADT_help
+MOV ADT_help #1
+JEQ ADT_help ADT_counter 12
+INC #0
+INC ADT_counter
+JMP 7
+
+DEL ADT_counter
+DEL ADT_help

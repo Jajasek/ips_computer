@@ -66,7 +66,20 @@ def JNE(x, y, pt_new):
     elif register[x] != register[y]:
         pointer = int(pt_new) - 2
 
-
+        
+def JLT(x,y,pt_new):
+    # JLT x y pt_new
+    # if x < y go with pointer to pt_new
+    
+    global pointer
+    if x not in register:
+        raise UndefinedRegisterError(x)
+    elif y not in register:
+        raise UndefinedRegisterError(y)
+    elif register[x] < register[y]:
+        pointer = int(pt_new) - 2
+        
+        
 def JMP(pt_new):
     # JMP pt_new
     # go with pointer to pt_new
@@ -104,6 +117,7 @@ INSTRUCTIONS = {
     "DEC",
     "JEQ",
     "JNE",
+    "JLT",
     "JMP",
     "CON",
     "DEL",

@@ -1,0 +1,9 @@
+% MUL z x y
+% multiply x by y stored in z
+
+CLR MUL_help
+MOV MUL_help #1
+MUT MUL_help #2
+CLR #0
+MOV #0 MUL_help
+DEL MUL_help

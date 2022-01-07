@@ -6,8 +6,8 @@ CLR #1
 CLR DIV_help
 CLR DIV_counter
 
-mov DIV_counter #2
-mov DIV_help #3
+MOV DIV_counter #2
+MOV DIV_help #3
 
 JLT DIV_counter DIV_help 17
 SUT DIV_counter DIV_help

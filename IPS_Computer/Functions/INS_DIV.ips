@@ -1,19 +1,22 @@
 % DIV d r x y
 % divide x by y, result -> d, mod -> r
 
-CLR #0
-CLR #1
 CLR DIV_help
-CLR DIV_counter
+CLR DIV_mod
+CLR DIV_whole
 
-MOV DIV_counter #2
+MOV DIV_mod #2
 MOV DIV_help #3
 
-JLT DIV_counter DIV_help 17
-SUT DIV_counter DIV_help
-INC #0
+JLT DIV_mod DIV_help 17
+SUT DIV_mod DIV_help
+INC DIV_whole
 JMP 12
 
-MOV #1 DIV_counter
+CLR #0
+MOV #0 DIV_whole
+CLR #1
+MOV #1 DIV_mod
 DEL DIV_help
-DEL DIV_counter
+DEL DIV_mod
+DEL DIV_whole

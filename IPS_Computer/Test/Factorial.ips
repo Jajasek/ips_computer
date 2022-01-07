@@ -1,0 +1,12 @@
+% Compute the factorial of a number
+% INPUT REGISTERS:
+%  - input
+% OUTPUT REGISTERS:
+%  - output
+
+CON output 1
+CLR counter
+JEQ counter input 10
+INC counter
+MUT output counter
+JMP 9

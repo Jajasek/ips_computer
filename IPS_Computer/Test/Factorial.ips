@@ -6,7 +6,7 @@
 
 CON output 1
 CLR counter
-JEQ counter input 10
+JEQ counter input 13
 INC counter
 MUT output counter
 JMP 9

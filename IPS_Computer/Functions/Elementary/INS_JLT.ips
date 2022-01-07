@@ -1,0 +1,16 @@
+% JLT x y pt_new
+% if x < y go with pointer to pt_new
+
+CLR JLT_help_1
+CLR JLT_help_2
+CLR JLT_help_3
+
+MOV JLT_help_1 x
+MOV JLT_help_2 y
+
+
+JEQ JLT_help_1 JLT_help_2 17
+jEQ JLT_help_1 JLT_help_3 pt_new
+DEC JLT_help_1
+DEC JLT_help_2
+JMP 12

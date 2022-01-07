@@ -1,0 +1,6 @@
+% JMP pt_new
+% go with pointer to pt_new
+
+CLR JMP_help
+JEQ JMP_help JMP_help pt_new
+DEL JMP_help

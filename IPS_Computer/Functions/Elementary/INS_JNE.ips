@@ -1,0 +1,6 @@
+% JNE x y pt_new
+% if x != y go with pointer to pt_new
+
+CLR JNE_help
+JEQ x y 7
+JMP pt_new

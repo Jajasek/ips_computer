@@ -1,0 +1,10 @@
+% SWT x y
+% switch values in x and y
+
+CLR SWT_help
+
+MOV SWT_help #0
+MOV #0 #1
+MOV #1 SWT_help
+
+DEL SWT_help

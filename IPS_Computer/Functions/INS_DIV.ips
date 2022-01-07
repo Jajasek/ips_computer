@@ -1,0 +1,19 @@
+% DIV d r x y
+% divide x by y, result -> d, mod -> r
+
+CLR #0
+CLR #1
+CLR DIV_help
+CLR DIV_counter
+
+mov DIV_counter #2
+mov DIV_help #3
+
+JLT DIV_counter DIV_help 17
+SUT DIV_counter DIV_help
+INC #0
+JMP 12
+
+MOV #1 DIV_counter
+DEL DIV_help
+DEL DIV_counter

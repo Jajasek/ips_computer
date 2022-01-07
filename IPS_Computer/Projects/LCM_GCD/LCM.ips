@@ -1,0 +1,24 @@
+% Compute LCM of 2 numbers
+% INPUT REGISTERS:
+%  - a
+%  - b
+% OUTPUT REGISTERS:
+%  - output
+
+CLR GCD_help_1
+CLR GCD_help_2
+MOV GCD_help_2 a
+MUT GCD_help_2 b
+
+CLR GCD_null
+JLT a b 18
+SWT a b
+JEQ a GCD_null 23
+
+DIV GCD_help_1 GCD_null b a
+MUT GCD_help_1 a
+SUT b GCD_help_1
+JMP 13
+
+CLR output
+DIV output GCD_null GCD_help_2 b

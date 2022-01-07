@@ -1,0 +1,21 @@
+% Compute GCD of 2 numbers
+% INPUT REGISTERS:
+%  - a
+%  - b
+% OUTPUT REGISTERS:
+%  - output
+
+CLR GCD_help
+
+CLR GCD_null
+JLT a b 15
+SWT a b
+JEQ a GCD_null 20
+
+DIV GCD_help GCD_null b a
+MUT GCD_help a
+SUT b GCD_help
+JMP 10
+
+CLR output
+MOV output b

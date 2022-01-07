@@ -1,0 +1,21 @@
+% Compute the n-th fibonacci number
+% INPUT REGISTERS:
+%  - n
+% OUTPUT REGISTERS:
+%  - fn
+
+CLR fn
+JEQ fn n 22
+CLR fn-1
+INC fn
+JEQ fn n 22
+DEC n
+
+CLR help
+CLR null
+
+MOV help fn
+ADT fn fn-1
+MOV fn-1 help
+DEC n
+JNE n null 17

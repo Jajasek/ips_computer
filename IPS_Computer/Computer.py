@@ -16,17 +16,21 @@ class UndefinedScriptArgumentError(INSError):
     pass
 
 
+class CyclicReferenceError(INSError):
+    pass
+
+
 def CLR(reg):
     # CLR x
     # clear x
-    
+
     register[reg] = 0
 
 
 def INC(reg):
     # INC x
     # increase x value by 1
-    
+
     if reg not in register:
         raise UndefinedRegisterError(reg)
     register[reg] += 1
@@ -35,16 +39,16 @@ def INC(reg):
 def DEC(reg):
     # DEC x
     # decrease x value by 1 (0 if register already at 0)
-    
+
     if reg not in register:
         raise UndefinedRegisterError(reg)
     register[reg] = max(0, register[reg] - 1)
 
 
-def JEQ(x,y,pt_new):
+def JEQ(x, y, pt_new):
     # JEQ x y pt_new
     # if x == y go with pointer to pt_new
-    
+
     global pointer
     if x not in register:
         raise UndefinedRegisterError(x)
@@ -66,11 +70,11 @@ def JNE(x, y, pt_new):
     elif register[x] != register[y]:
         pointer = int(pt_new) - 2
 
-        
-def JLT(x,y,pt_new):
+
+def JLT(x, y, pt_new):
     # JLT x y pt_new
     # if x < y go with pointer to pt_new
-    
+
     global pointer
     if x not in register:
         raise UndefinedRegisterError(x)
@@ -78,8 +82,8 @@ def JLT(x,y,pt_new):
         raise UndefinedRegisterError(y)
     elif register[x] < register[y]:
         pointer = int(pt_new) - 2
-        
-        
+
+
 def JMP(pt_new):
     # JMP pt_new
     # go with pointer to pt_new
@@ -98,7 +102,7 @@ def CON(reg, const):
 def DEL(reg):
     # DEL x
     # remove register x from list of registers
-    
+
     del register[reg]
 
 
@@ -124,18 +128,22 @@ INSTRUCTIONS = {
     "PRT",
 }
 
-
 register = {}
 pointer = -1
+frames = set()
 
 
 def run_file(filename, *args):
+    if filename in frames:
+        raise CyclicReferenceError(filename)
+    frames.add(filename)
     global pointer
 
     try:
         with open(filename, "r") as op:
             instr = [
-                [args[int(word[1:])] if word.startswith("#") else word for word in line.split() if not line.startswith("%")]
+                [args[int(word[1:])] if word.startswith("#") else word for word in line.split() if
+                 not line.startswith("%")]
                 for line in op
             ]
     except IndexError:
@@ -160,6 +168,8 @@ def run_file(filename, *args):
                 raise UndefinedInstructionError(instr[pointer][0].upper())
         pointer += 1
 
+    frames.remove(filename)
+
 
 def main(filename):
     try:
@@ -183,10 +193,11 @@ def main(filename):
 
 if __name__ == "__main__":
     try:
-        main("Test/Factorial.ips")
+        main("Test/Fibonacci.ips")
     finally:
         print("\nProgram terminated with following values:")
         with open("Output.txt", "w") as op:
             for reg, val in register.items():
-                print(f"{reg}: {val}", file=op)
-                print(f"{reg}: {val}")
+                if val is not None:
+                    print(f"{reg}: {val}", file=op)
+                    print(f"{reg}: {val}")
